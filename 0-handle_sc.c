@@ -1,6 +1,4 @@
-#include <stdarg.h>
 #include "main.h"
-#include <unistd.h>
 /**
  * _printf - To write own printf.
  * @format: pointer
@@ -9,32 +7,18 @@
 int _printf(const char *format, ...)
 {
 	va_list par;
-	int d, charc;
-	int plus = 0;
-	char *pptr;
+	int d, plus = 0;
 
 	va_start(par, format);
+	if (format == NULL)
+		return (-1);
 	d = 0;
-	while (format[d] != '\0')
+	while (format && format[d] != '\0')
 	{
 		if (format[d] == '%')
 		{
 			d++;
-			if (format[d] == 'c')
-			{
-				charc = va_arg(par, int);
-				plus = _print_char(charc, plus);
-			}
-			else if (format[d] == 's')
-			{
-				pptr = va_arg(par, char *);
-				plus = print_string(pptr, plus);
-			}
-			else if (format[d] == '%')
-			{
-				write(1, &format[d], 1);
-				plus++;
-			}
+			plus += _switch(format, par, plus, d);
 		}
 		else
 		{
@@ -44,6 +28,37 @@ int _printf(const char *format, ...)
 		d++;
 	}
 	va_end(par);
+	return (plus);
+}
+int _switch(const char *format, va_list par, int plus, int d)
+{
+	int charc, intr;
+	char *pptr;
+
+	switch(format[d])
+	{
+		case 'c':
+			charc = va_arg(par, int);
+			write(1, &charc, 1);
+			plus++;
+			break;
+		case 's':
+			pptr = va_arg(par, char *);
+			plus = print_string(pptr, plus);
+			break;
+		case '%':
+			write(1, &format[d], 1);
+			plus++;
+			break;
+		case 'd':
+			intr = va_arg(par, int);
+			plus = print_intr(intr);
+			break;
+		case 'i':
+			intr = va_arg(par, int);
+			plus = print_intr(intr);
+			break;
+	}
 	return (plus);
 }
 /**
@@ -68,7 +83,7 @@ int print_string(char *ptr, int plus)
 	plus = 0;
 	while (*ptr != '\0')
 	{
-		write(STDOUT_FILENO, ptr, 1);
+		_putchar(*ptr);
 		ptr++;
 		plus++;
 	}
