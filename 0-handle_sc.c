@@ -30,12 +30,20 @@ int _printf(const char *format, ...)
 	va_end(par);
 	return (plus);
 }
+/**
+ * _switch - switch case.
+ * @format: pointer
+ * @par: variable argument lit.
+ * @plus: count
+ * @d: index.
+ * Return: plus.
+ */
 int _switch(const char *format, va_list par, int plus, int d)
 {
 	int charc, intr;
 	char *pptr;
 
-	switch(format[d])
+	switch (format[d])
 	{
 		case 'c':
 			charc = va_arg(par, int);
