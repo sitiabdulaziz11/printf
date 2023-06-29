@@ -13,9 +13,9 @@ int print_intr(int intrr, int plus)
 		plus++;
 		intrr = -intrr;
 	}
-	if (intr >= 10)
+	if (intrr >= 10)
 	{
-		plus += print_intr(intrr / 10);
+		plus += print_intr(intrr / 10, plus);
 	}
 	_putchar('0' + (intrr % 10));
 	plus++;

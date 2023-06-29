@@ -40,7 +40,7 @@ int _printf(const char *format, ...)
  */
 int _switch(const char *format, va_list par, int plus, int d)
 {
-	int charc, intr;
+	int charc, intrr;
 	char *pptr;
 
 	switch (format[d])
@@ -59,12 +59,12 @@ int _switch(const char *format, va_list par, int plus, int d)
 			plus++;
 			break;
 		case 'd':
-			intr = va_arg(par, int);
-			plus = print_intr(intr);
+			intrr = va_arg(par, int);
+			plus = print_intr(intrr, plus);
 			break;
 		case 'i':
-			intr = va_arg(par, int);
-			plus = print_intr(intr);
+			intrr = va_arg(par, int);
+			plus = print_intr(intrr, plus);
 			break;
 	}
 	return (plus);
@@ -75,9 +75,9 @@ int _switch(const char *format, va_list par, int plus, int d)
  * @plus: count
  * Return: plus
  */
-int _print_char(char var, int plus)
+int _print_char(char charc, int plus)
 {
-	write(1, &var, 1);
+	write(1, &charc, 1);
 	return (plus + 1);
 }
 /**
@@ -86,13 +86,13 @@ int _print_char(char var, int plus)
  * @plus: count.
  * Return: plus
  */
-int print_string(char *ptr, int plus)
+int print_string(char *pptr, int plus)
 {
 	plus = 0;
-	while (*ptr != '\0')
+	while (*pptr != '\0')
 	{
-		_putchar(*ptr);
-		ptr++;
+		_putchar(*pptr);
+		pptr++;
 		plus++;
 	}
 	return (plus);
