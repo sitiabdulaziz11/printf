@@ -14,7 +14,7 @@ int _switch(const char *format, va_list par, int plus, int d);
 void print_buffer(char buffer[], int *b_ind);
 int handle_spcfr(const char format, int plus, va_list par);
 int _print_char(char charc, int plus);
-int print_string(char *pptr, int plus);
+int print_string(char *pptr);
 int print_intr(int intrr, int plus);
 
 #endif
