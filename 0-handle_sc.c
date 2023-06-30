@@ -10,15 +10,15 @@ int _printf(const char *format, ...)
 	int d, plus = 0;
 
 	va_start(par, format);
-	if (format == NULL)
+	if (format == NULL ||(format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	d = 0;
 	while (format && format[d] != '\0')
 	{
 		if (format[d] == '%')
 		{
-			d++;
-			plus += _switch(format, par, plus, d);
+			_switch(format, par, plus, d);
+			plus++;
 		}
 		else
 		{
@@ -52,11 +52,7 @@ int _switch(const char *format, va_list par, int plus, int d)
 			break;
 		case 's':
 			pptr = va_arg(par, char *);
-			plus = print_string(pptr, plus);
-			break;
-		case '%':
-			write(1, &format[d], 1);
-			plus++;
+			print_string(pptr);
 			break;
 		case 'd':
 			intrr = va_arg(par, int);
@@ -66,19 +62,17 @@ int _switch(const char *format, va_list par, int plus, int d)
 			intrr = va_arg(par, int);
 			plus = print_intr(intrr, plus);
 			break;
+		case '%':
+			_putchar('%');
+			plus++;
+			break;
+		default:
+			_putchar(format[-1]);
+			_putchar(*format);
+			plus++;
+			break;
 	}
 	return (plus);
-}
-/**
- * _print_char - handle character specifiers
- * @var: character
- * @plus: count
- * Return: plus
- */
-int _print_char(char charc, int plus)
-{
-	write(1, &charc, 1);
-	return (plus + 1);
 }
 /**
  * print_string - handle string specifiers.
@@ -86,15 +80,14 @@ int _print_char(char charc, int plus)
  * @plus: count.
  * Return: plus
  */
-int print_string(char *pptr, int plus)
+int print_string(char *s)
 {
-	plus = 0;
-	while (*pptr != '\0')
-	{
-		_putchar(*pptr);
-		pptr++;
-		plus++;
-	}
-	return (plus);
-}
+	int p = 0;
 
+	while (s[p] != '\0')
+	{
+		_putchar(s[p]);
+		p++;
+	}
+	return (p);
+}
