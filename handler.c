@@ -25,6 +25,11 @@ int _printf(const char *format, ...)
 					  len++; break;
 				case 'd':
 				case 'i': len += print_int(args); break;
+				case 'b': len += print_b(args); break;
+				case 'o': len += print_o(args); break;
+				case 'u': len += print_u(args); break;
+				case 'r': len += print_rev(args); break;
+				case 'x': len += print_x(args); break;
 				default: _putchar('%');
 					_putchar(format[q]);
 					len += 2; break; }

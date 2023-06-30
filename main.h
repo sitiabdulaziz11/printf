@@ -13,5 +13,9 @@ int _printf(const char *format, ...);
 int print_char(va_list args);
 int print_string(va_list args);
 int print_int(va_list args);
+int print_b(va_list args);
+int print_o(va_list args);
+int print_u(va_list args);
+int print_rev(va_list agrs);
 
 #endif
