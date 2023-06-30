@@ -1,5 +1,5 @@
 0x11. C - printf
-C
+
 Group project
  By: Julien Barbier, co-founder & CEO
  Weight: 5
@@ -17,9 +17,7 @@ Technical Writing
 Background Context
 Write your own printf function.
 
-
-
-^ In this picture, Kris, and Jul
+In this picture, Kris, and Jul
 
 Resources
 Read or watch:
