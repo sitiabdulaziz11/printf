@@ -5,6 +5,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <limits.h>
+#include <stdint.h>
 
 #define BU_SIZE 1024
 

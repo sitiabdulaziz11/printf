@@ -9,25 +9,31 @@ int print_int(va_list args)
 {
 	int num = va_arg(args, int);
 	int z = 0;
-	int remainder;
 	int digits[12];
 	int i = 0, j;
 
-	if (num < 0)
-	{
-		_putchar('-');
-		num = -num;
-		z++;
-	}
 	if (num == 0)
 	{
 		_putchar('0');
 		return (1);
 	}
+	if (num < 0)
+	{
+		_putchar('-');
+		z++;
+		if (num == INT_MIN)
+		{
+			num = -(num + 1);
+			digits[0] = num % 10 + 1;
+			num = num / 10;
+			i++;
+		}
+		else
+			num = -num;
+	}
 	while (num != 0)
 	{
-		remainder = num % 10;
-		digits[i] = remainder;
+		digits[i] = num % 10;
 		num = num / 10;
 		i++;
 	}
