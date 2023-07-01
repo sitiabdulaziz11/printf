@@ -31,8 +31,6 @@ int _printf(const char *format, ...)
 				case 'r': len += print_rev(args); break;
 				case 'x': len += print_x(args); break;
 				case 'X': len += print_X(args); break;
-				/*case 'R': len += print_R(args); break;
-				case 'S': len += print_S(args); break;*/
 				case 'p': len += print_p(args); break;
 				default: _putchar('%');
 					_putchar(format[q]);
