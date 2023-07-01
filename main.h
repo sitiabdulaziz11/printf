@@ -19,5 +19,9 @@ int print_u(va_list args);
 int print_rev(va_list agrs);
 int print_X(va_list args);
 int print_x(va_list args);
+int print_p(va_list args);
+int print_R(va_list args);
+int print_S(va_list args);
+int print_hex(unsigned long int num);
 
 #endif
