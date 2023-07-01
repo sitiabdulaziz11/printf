@@ -1,11 +1,11 @@
 #include "main.h"
 /**
- * print_x - hexca.
+ * print_X - hexca.
  * @args: arg
  *
  * Return: index
  */
-int print_x(va_list args)
+int print_X(va_list args)
 {
 	unsigned int num, val[32], temp;
 	int i, j = 0;
@@ -13,7 +13,7 @@ int print_x(va_list args)
 	num = va_arg(args, unsigned int);
 	while (num == 0)
 	{
-		_putchar(0);
+		_putchar('0');
 		return (1);
 	}
 	while (num != 0)
@@ -27,7 +27,7 @@ int print_x(va_list args)
 	for (; i >= 0; i--)
 	{
 		if (val[i] > 9)
-			_putchar(val[i] + 'a' - 10);
+			_putchar(val[i] + 'A' - 10);
 		else
 			_putchar('0' + val[i]);
 	}

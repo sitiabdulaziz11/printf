@@ -25,7 +25,7 @@ int print_b(va_list args)
 	i = j - 1;
 	for (; i >= 0; i--)
 	{
-		_putchar('0' + val[j]);
+		_putchar('0' + val[i]);
 
 	}
 	return (j);

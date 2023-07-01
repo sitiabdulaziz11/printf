@@ -7,7 +7,7 @@
  */
 int print_rev(va_list args)
 {
-	char *str, *ptr;
+	char *str;
 	int i = 0, j;
 
 	str = va_arg(args, char*);
@@ -22,7 +22,6 @@ int print_rev(va_list args)
 	for (; j >= 0; j--)
 	{
 		_putchar(str[j]);
-		j--;
 	}
 	return (i);
 }
