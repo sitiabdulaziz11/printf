@@ -10,10 +10,10 @@ int print_b(va_list args)
 	unsigned int num;
 	int i, j = 0, val[32];
 
-	num = va_arg(args, int);
-	while (num == 0)
+	num = va_arg(args, unsigned int);
+	if (num == 0)
 	{
-		_putchar(0);
+		_putchar('0');
 		return (1);
 	}
 	while (num != 0)
