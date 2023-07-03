@@ -8,13 +8,15 @@
 int print_p(va_list args)
 {
 	void *ptr;
-	int i = 0, j;
-	char *str = "(nil)";
+	int i;
+	const char *str;
 	unsigned long int k;
 
 	ptr = va_arg(args, void*);
 	if (ptr == NULL)
 	{
+		str = "(nil)";
+		i = 0;
 		while (str[i] != '\0')
 		{
 			_putchar(str[i]);
@@ -25,8 +27,7 @@ int print_p(va_list args)
 	k = (unsigned long int)ptr;
 	_putchar('0');
 	_putchar('x');
-	j = print_hex(k);
-	return (j + 2);
+	return (print_hex(k) + 2);
 }
 /**
  * print_hex - hex
