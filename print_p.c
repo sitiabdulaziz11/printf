@@ -9,13 +9,12 @@ int print_p(va_list args)
 {
 	void *ptr;
 	int i;
-	const char *str;
+	const char *str = "(nil)";
 	unsigned long int k;
 
 	ptr = va_arg(args, void*);
 	if (ptr == NULL)
 	{
-		str = "(nil)";
 		i = 0;
 		while (str[i] != '\0')
 		{
@@ -37,21 +36,33 @@ int print_p(va_list args)
  */
 int print_hex(unsigned long int num)
 {
-	int i, j = 0, arr[64];
+	long int k, j, *arr;
 	unsigned int temp = num;
 
-	for (i = 0; temp != 0; i++)
+	j = 0;
+	while (num / 16 != 0)
 	{
-		arr[i] = temp % 16;
+		num /= 16;
+		j++;
+	}
+	j++;
+
+	arr = malloc(j * sizeof(long int));
+
+	for (k = 0; k < j; k++)
+	{
+		arr[k] = temp % 16;
 		temp /= 16;
 	}
-	j = i - 1;
-	for (; j >= 0; j--)
+
+	for (k = j - 1; k >= 0; k--)
 	{
-		if (arr[j] > 9)
-			_putchar(arr[j] + 'a' - 10);
-		else
-			_putchar(arr[j] + '0');
+		if (arr[k] > 9)
+		{
+			arr[k] = arr[k] + 39;
+		}
+		_putchar(arr[k] + '0');
 	}
-	return (i);
+	free(arr);
+	return (j);
 }

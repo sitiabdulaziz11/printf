@@ -33,7 +33,14 @@ int print_format(const char *format, va_list args)
 		if (format[q] == '%')
 		{
 			q++;
-			len += write_format(format, args, q);
+			if (format[q] == 'p')
+			{
+				len += print_p(args);
+			}
+			else
+			{
+				len += write_format(format, args, q);
+			}
 		}
 		else
 		{
@@ -78,8 +85,6 @@ int write_format(const char *format, va_list args, int q)
 			return (print_x(args));
 		case 'X':
 			return (print_X(args));
-		case 'p':
-			return (print_p(args));
 		default:
 			_putchar('%');
 			_putchar(format[q]);
