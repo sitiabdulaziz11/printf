@@ -1,68 +1,55 @@
 #include "main.h"
+
 /**
  * print_p - pointer.
  * @args: arg
  *
- * Return: index
+ * Return: number of characters printed
  */
 int print_p(va_list args)
 {
-	void *ptr;
-	int i;
-	const char *str = "(nil)";
-	unsigned long int k;
+	void *ptr = va_arg(args, void *);
+	unsigned long int address = (unsigned long int)ptr;
 
-	ptr = va_arg(args, void*);
-	if (ptr == NULL)
-	{
-		i = 0;
-		while (str[i] != '\0')
-		{
-			_putchar(str[i]);
-			i++;
-		}
-		return (i);
-	}
-	k = (unsigned long int)ptr;
 	_putchar('0');
 	_putchar('x');
-	return (print_hex(k) + 2);
+	return (print_hex(address, sizeof(void *) * 2) + 2);
 }
 /**
- * print_hex - hex
- * @num: k
+ * print_hex - print hexadecimal representation of a numbe
+ * @num: number to be printed
+ * @width: width of the hexadecimal representation
  *
- * Return: index
+ * Return: number of characters printed
  */
-int print_hex(unsigned long int num)
+int print_hex(unsigned long int num, int width)
 {
-	long int k, j, *arr;
-	unsigned int temp = num;
+	char hex_digits[] = "0123456789abcdef";
+	char hex_value[16];
+	int remainder, count = 0;
+	int k, j, i = 0;
 
-	j = 0;
-	while (num / 16 != 0)
+	if (num == 0)
 	{
+		_putchar('0');
+		return (1);
+	}
+	while (num != 0)
+	{
+		remainder = num % 16;
+		hex_value[i] = hex_digits[remainder];
 		num /= 16;
-		j++;
+		i++;
 	}
-	j++;
-
-	arr = malloc(j * sizeof(long int));
-
-	for (k = 0; k < j; k++)
+	for (k = i - 1; k >= 0; k--)
 	{
-		arr[k] = temp % 16;
-		temp /= 16;
+		_putchar(hex_value[k]);
+		count++;
 	}
-
-	for (k = j - 1; k >= 0; k--)
+	for (j = 0; j < width - i; j++)
 	{
-		if (arr[k] > 9)
-		{
-			arr[k] = arr[k] + 39;
-		}
-		_putchar(arr[k] + '0');
+		_putchar('0');
+		count++;
 	}
-	free(arr);
-	return (j);
+	return (count);
 }

@@ -24,7 +24,7 @@ int print_x(va_list args);
 int print_p(va_list args);
 int print_R(va_list args);
 int print_S(va_list args);
-int print_hex(unsigned long int num);
+int print_hex(unsigned long int num, int width);
 int print_format(const char *format, va_list args);
 int write_format(const char *format, va_list args, int q);
 
