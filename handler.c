@@ -86,7 +86,9 @@ int write_format(const char *format, va_list args, int q)
 		case 'X':
 			return (print_X(args));
 		case 'R':
-			return (print_R(args));
+			return (print_S(args));
+		case 'S':
+			return (print_S(args));
 		default:
 			_putchar('%');
 			_putchar(format[q]);

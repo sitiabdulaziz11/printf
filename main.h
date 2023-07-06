@@ -10,6 +10,12 @@
 
 #define BU_SIZE 1024
 
+#define M 1
+#define P 2
+#define Z 3
+#define H 4
+#define S 5
+
 int _putchar(char c);
 int _printf(const char *format, ...);
 int print_char(va_list args);
@@ -25,6 +31,8 @@ int print_p(va_list args);
 int print_R(va_list args);
 int print_S(va_list args);
 int print_R(va_list args);
+int print_S(va_list args);
+int print_f(const char *format, int *q);
 int print_hex(unsigned long int num);
 int print_format(const char *format, va_list args);
 int write_format(const char *format, va_list args, int q);
